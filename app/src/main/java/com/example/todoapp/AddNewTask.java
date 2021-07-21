@@ -1,5 +1,7 @@
 package com.example.todoapp;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.example.todoapp.Model.ToDoModel;
@@ -82,7 +85,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
             });
 
-            boolean finalIsUpdate = isUpdate;
+           final boolean finalIsUpdate = isUpdate;
             newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -99,7 +102,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
             });
         }
+    }
 
+    @Override
+    public void onDismiss( DialogInterface dialog) {
+        Activity activity = getActivity();
+        if(activity instanceof DialogCloseListener){
+            ((DialogCloseListener)activity).handleDialogClose(dialog);
         }
     }
 }
+
