@@ -1,5 +1,7 @@
 package com.example.todoapp.Adapter;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.CompoundButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.todoapp.AddNewTask;
 import com.example.todoapp.MainActivity;
 import com.example.todoapp.Model.ToDoModel;
 import com.example.todoapp.R;
@@ -58,6 +61,18 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         this.todoList = todoList;
         notifyDataSetChanged();
     }
+    public Context getContext(){
+        return activity;
+    }
+   public  void editItem(int position){
+        ToDoModel item = todoList.get(position);
+       Bundle bundle = new Bundle();
+       bundle.putInt("Id",item.getId());
+       bundle.putString("task",item.getTask());
+       AddNewTask fragment = new AddNewTask();
+       fragment.setArguments(bundle);
+       fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
+   }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;

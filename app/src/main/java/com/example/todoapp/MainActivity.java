@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
+
     }
 
     @Override
