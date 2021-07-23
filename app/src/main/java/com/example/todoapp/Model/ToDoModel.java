@@ -2,7 +2,7 @@ package com.example.todoapp.Model;
 
 public class ToDoModel {
     private int id,status;
-    private String Task;
+    private String task;
 
     public int getId() {
         return id;
@@ -21,10 +21,10 @@ public class ToDoModel {
     }
 
     public String getTask() {
-        return Task;
+        return task;
     }
 
     public void setTask(String task) {
-        Task = task;
+        this.task = task;
     }
 }
